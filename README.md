@@ -1,12 +1,15 @@
 springboot 集成 velocity
 
 application.properties
-VELOCITY TEMPLATES (VelocityAutoConfiguration)
+##VELOCITY TEMPLATES (VelocityAutoConfiguration)
+spring.velocity.charset=UTF-8 
+spring.velocity.properties.input.encoding=UTF-8 
+spring.velocity.properties.output.encoding=UTF-8 
+spring.velocity.resourceLoaderPath=classpath:/templates/ 
+spring.velocity.suffix=.html 
+spring.velocity.toolbox-config-location=/WEB-INF/toolbox.xml
 
-spring.velocity.charset=UTF-8 spring.velocity.properties.input.encoding=UTF-8 spring.velocity.properties.output.encoding=UTF-8 spring.velocity.resourceLoaderPath=classpath:/templates/ spring.velocity.suffix=.html spring.velocity.toolbox-config-location=/WEB-INF/toolbox.xml
-
-pom.xml
-4.0.0
+pom.xml 源文件
 
 <groupId>com.iterror</groupId>
 <artifactId>springboot-velocity</artifactId>
@@ -47,20 +50,28 @@ pom.xml
         </plugin>
     </plugins>
 </build>
-Application.java
+
+Application.java 源代码
+
 package com.iterror.springboot.controller;
 
-import org.springframework.boot.SpringApplication; import org.springframework.boot.autoconfigure.SpringBootApplication; import org.springframework.web.bind.annotation.RequestMapping; import org.springframework.stereotype.Controller; import org.springframework.ui.Model;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication; 
+import org.springframework.web.bind.annotation.RequestMapping; 
+import org.springframework.stereotype.Controller; 
+import org.springframework.ui.Model;
 
-@SpringBootApplication @Controller public class Application {
+@SpringBootApplication 
+@Controller 
+public class Application {
 
-@RequestMapping("/home")
-public String home(Model model) {
-    model.addAttribute("name", "name1");
-    return "home";
-}
-
-public static void main(String[] args) {
-    SpringApplication.run(Application.class, args);
-}
+    @RequestMapping("/home")
+    public String home(Model model) {
+        model.addAttribute("name", "name1");
+        return "home";
+    }
+    
+    public static void main(String[] args) {
+        SpringApplication.run(Application.class, args);
+    }
 }
